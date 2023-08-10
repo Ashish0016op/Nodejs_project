@@ -59,6 +59,19 @@
                         listItem.appendChild(buy2);
                         listItem.appendChild(buy3);
                     }
+                    try {
+                        const itemId=newProduct.id;
+                        const newQuantity=newProduct.Quantity;
+                        const response = await axios.put(`http://localhost:5500/update_details/${itemId}`, {
+                            id: newProduct.id,
+                            itemName:newProduct.itemName,
+                            Description:newProduct.Description,
+                            price:newProduct.price,
+                            Quantity: newQuantity
+                        });
+                    } catch (error) {
+                        console.error("Error buying product:", error);
+                    }
                 });
                 buy2.addEventListener('click', async () => {
                     if (newProduct.Quantity >= 2) {
@@ -67,6 +80,19 @@
                         listItem.appendChild(buy1);
                         listItem.appendChild(buy2);
                         listItem.appendChild(buy3);
+                    }
+                    try {
+                        const itemId=newProduct.id;
+                        const newQuantity=newProduct.Quantity;
+                        const response = await axios.put(`http://localhost:5500/update_details/${itemId}`, {
+                            id: newProduct.id,
+                            itemName:newProduct.itemName,
+                            Description:newProduct.Description,
+                            price:newProduct.price,
+                            Quantity: newQuantity
+                        });
+                    } catch (error) {
+                        console.error("Error buying product:", error);
                     }
                 });
                 buy3.addEventListener('click', async () => {
@@ -77,6 +103,19 @@
                         listItem.appendChild(buy2);
                         listItem.appendChild(buy3);
                     }
+                    try {
+                        const itemId=newProduct.id;
+                        const newQuantity=newProduct.Quantity;
+                        const response = await axios.put(`http://localhost:5500/update_details/${itemId}`, {
+                            id: newProduct.id,
+                            itemName:newProduct.itemName,
+                            Description:newProduct.Description,
+                            price:newProduct.price,
+                            Quantity: newQuantity
+                        });
+                    } catch (error) {
+                        console.error("Error buying product:", error);
+                    }
                 });
                 addedItemsList.appendChild(listItem);
             } catch (error) {
@@ -86,29 +125,41 @@
         document.addEventListener('DOMContentLoaded', getProduct);
         async function getProduct(){
             const response=await axios.get('http://localhost:5500/get_details');
-            //console.log(response.data.productDetails[0].itemName);
-            const addedItemsList=document.getElementById('AddedItems');
-                const buy1=document.createElement('button');
-                buy1.textContent='buy1';
-                const buy2=document.createElement('button');
-                buy2.textContent='buy2';
-                const buy3=document.createElement('button');
-                buy3.textContent='buy3';
-                const listItem = document.createElement('li');
                 for(let i=0;i<response.data.productDetails.length;i++){
+                    const addedItemsList=document.getElementById('AddedItems');
+                    const buy1=document.createElement('button');
+                    buy1.textContent='buy1';
+                    const buy2=document.createElement('button');
+                    buy2.textContent='buy2';
+                    const buy3=document.createElement('button');
+                    buy3.textContent='buy3';
+                    const listItem = document.createElement('li');
                     const newProduct=response.data.productDetails[i];
-                    console.log(newProduct);
                     listItem.innerHTML = `${newProduct.itemName} - ${newProduct.Description} - ${newProduct.price} - ${newProduct.Quantity}`;
                     listItem.appendChild(buy1);
                     listItem.appendChild(buy2);
                     listItem.appendChild(buy3);
                     buy1.addEventListener('click', async () => {
                         if (newProduct.Quantity >= 1) {
-                            newProduct.Quantity -= 1;
+                            newProduct.Quantity-=1;
                             listItem.innerHTML = `${newProduct.itemName} - ${newProduct.Description} - ${newProduct.price} - ${newProduct.Quantity}`;
                             listItem.appendChild(buy1);
                             listItem.appendChild(buy2);
                             listItem.appendChild(buy3);
+                        }
+                        try {
+                        const itemId=newProduct.id;
+                        let newQuantity=newProduct.Quantity;
+                        const response = await axios.put(`http://localhost:5500/update_details/${itemId}`, {
+                            id: newProduct.id,
+                            itemName:newProduct.itemName,
+                            price:newProduct.price,
+                            Description:newProduct.Description,
+                            Quantity: newQuantity
+                        });
+                        console.log(response.data);
+                        } catch (error) {
+                            console.error("Error buying product:", error);
                         }
                     });
                     buy2.addEventListener('click', async () => {
@@ -119,6 +170,20 @@
                             listItem.appendChild(buy2);
                             listItem.appendChild(buy3);
                         }
+                        try {
+                        const itemId=newProduct.id;
+                        let newQuantity=newProduct.Quantity;
+                        const response = await axios.put(`http://localhost:5500/update_details/${itemId}`, {
+                            id: newProduct.id,
+                            itemName:newProduct.itemName,
+                            price:newProduct.price,
+                            Description:newProduct.Description,
+                            Quantity: newQuantity
+                        });
+                        console.log(response.data);
+                        } catch (error) {
+                            console.error("Error buying product:", error);
+                        }
                     });
                     buy3.addEventListener('click', async () => {
                         if (newProduct.Quantity >= 3) {
@@ -127,6 +192,20 @@
                             listItem.appendChild(buy1);
                             listItem.appendChild(buy2);
                             listItem.appendChild(buy3);
+                        }
+                        try {
+                        const itemId=newProduct.id;
+                        let newQuantity=newProduct.Quantity;
+                        const response = await axios.put(`http://localhost:5500/update_details/${itemId}`, {
+                            id: newProduct.id,
+                            itemName:newProduct.itemName,
+                            price:newProduct.price,
+                            Description:newProduct.Description,
+                            Quantity: newQuantity
+                        });
+                        console.log(response.data);
+                        } catch (error) {
+                            console.error("Error buying product:", error);
                         }
                     });
                     addedItemsList.appendChild(listItem);
